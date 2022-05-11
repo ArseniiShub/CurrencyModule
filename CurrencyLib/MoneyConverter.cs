@@ -8,7 +8,7 @@ public class MoneyConverter : IMoneyConverter
 
 	public MoneyConverter(IExchangeRateProvider exchangeRateProvider)
 	{
-		_exchangeRateProvider = exchangeRateProvider ?? throw new ArgumentNullException(nameof(exchangeRateProvider));
+		_exchangeRateProvider = exchangeRateProvider;
 	}
 
 	public MoneyData ConvertMoney(MoneyData moneyData, CurrencyData toCurrency)

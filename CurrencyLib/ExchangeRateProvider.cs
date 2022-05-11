@@ -8,7 +8,7 @@ public class ExchangeRateProvider : IExchangeRateProvider
 
 	public ExchangeRateProvider(IList<ExchangeRate> exchangeRates)
 	{
-		_exchangeRates = exchangeRates ?? throw new ArgumentNullException(nameof(exchangeRates));
+		_exchangeRates = exchangeRates;
 	}
 
 	public ExchangeRate GetExchangeRate(CurrencyData from, CurrencyData to)

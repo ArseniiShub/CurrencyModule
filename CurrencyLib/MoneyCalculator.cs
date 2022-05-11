@@ -8,7 +8,7 @@ public class MoneyCalculator : IMoneyCalculator
 
 	public MoneyCalculator(IMoneyConverter moneyConverter)
 	{
-		_moneyConverter = moneyConverter ?? throw new ArgumentNullException(nameof(moneyConverter));
+		_moneyConverter = moneyConverter;
 	}
 
 	public MoneyData Add(MoneyData money1, MoneyData money2)
