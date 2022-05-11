@@ -11,14 +11,14 @@ public class MoneyConverter : IMoneyConverter
 		_exchangeRateProvider = exchangeRateProvider;
 	}
 
-	public MoneyData ConvertMoney(MoneyData moneyData, CurrencyData toCurrency)
+	public MoneyData Convert(MoneyData moneyData, CurrencyData toCurrency)
 	{
 		var exchangeRate = _exchangeRateProvider.GetExchangeRate(moneyData.Currency, toCurrency);
 
 		return new MoneyData
 		{
 			Currency = toCurrency,
-			Value = exchangeRate.Value * moneyData.Value
+			Amount = exchangeRate.Ratio * moneyData.Amount
 		};
 	}
 }

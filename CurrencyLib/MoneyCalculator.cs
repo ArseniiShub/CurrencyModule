@@ -16,16 +16,16 @@ public class MoneyCalculator : IMoneyCalculator
 		var result = new MoneyData
 		{
 			Currency = money1.Currency,
-			Value = money1.Value
+			Amount = money1.Amount
 		};
 
 		if(money1.Currency.Id == money2.Currency.Id)
 		{
-			result.Value += money2.Value;
+			result.Amount += money2.Amount;
 		}
 		else
 		{
-			result.Value += _moneyConverter.ConvertMoney(money2, result.Currency).Value;
+			result.Amount += _moneyConverter.Convert(money2, result.Currency).Amount;
 		}
 
 		return result;
@@ -36,16 +36,16 @@ public class MoneyCalculator : IMoneyCalculator
 		var result = new MoneyData
 		{
 			Currency = money1.Currency,
-			Value = money1.Value
+			Amount = money1.Amount
 		};
 
 		if(money1.Currency.Id == money2.Currency.Id)
 		{
-			result.Value = money1.Value - money2.Value;
+			result.Amount = money1.Amount - money2.Amount;
 		}
 		else
 		{
-			result.Value -= _moneyConverter.ConvertMoney(money2, result.Currency).Value;
+			result.Amount -= _moneyConverter.Convert(money2, result.Currency).Amount;
 		}
 
 		return result;

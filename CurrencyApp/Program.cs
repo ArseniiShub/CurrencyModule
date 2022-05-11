@@ -7,8 +7,8 @@ var currency2 = new CurrencyData { Id = 2, Name = "Рубль", ShortName = "RUB
 var exchangeRateProvider = new ExchangeRateProvider(
 	new List<ExchangeRate>
 	{
-		new() { FromCurrency = currency1, ToCurrency = currency2, Value = 70 },
-		new() { FromCurrency = currency2, ToCurrency = currency1, Value = 0.014m }
+		new() { FromCurrency = currency1, ToCurrency = currency2, Ratio = 70 },
+		new() { FromCurrency = currency2, ToCurrency = currency1, Ratio = 0.014m }
 	}
 );
 var currencyConverter = new MoneyConverter(exchangeRateProvider);
@@ -18,18 +18,18 @@ var moneyCalculator = new MoneyCalculator(currencyConverter);
 var moneyData1 = new MoneyData
 {
 	Currency = currency1,
-	Value = 100
+	Amount = 100
 };
 
 //1000 Russian Rubles
 var moneyData2 = new MoneyData
 {
 	Currency = currency2,
-	Value = 1000
+	Amount = 1000
 };
 
-var res1 = currencyConverter.ConvertMoney(moneyData1, currency2);
-Console.WriteLine($"{moneyData1.Value} {moneyData1.Currency.Name} = {res1.Value} {res1.Currency.Name}");
+var res1 = currencyConverter.Convert(moneyData1, currency2);
+Console.WriteLine($"{moneyData1.Amount} {moneyData1.Currency.Name} = {res1.Amount} {res1.Currency.Name}");
 
 var res2 = moneyCalculator.Subtract(moneyData1, moneyData2);
-Console.WriteLine($"{moneyData1.Value} {moneyData1.Currency.Name} - {moneyData2.Value} {moneyData2.Currency.Name} = {res2.Value} {res2.Currency.Name}");
+Console.WriteLine($"{moneyData1.Amount} {moneyData1.Currency.Name} - {moneyData2.Amount} {moneyData2.Currency.Name} = {res2.Amount} {res2.Currency.Name}");
